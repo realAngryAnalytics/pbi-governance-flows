@@ -1,0 +1,658 @@
+{
+	"info": {
+		"_postman_id": "57db6c5f-7ba6-4113-87b4-6bcb8f4d06e4",
+		"name": "PBI Governance",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "O365 Management API",
+			"item": [
+				{
+					"name": "O365 Management API Auth",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"type": "any"
+								},
+								{
+									"key": "callBackUrl",
+									"type": "any"
+								},
+								{
+									"key": "authUrl",
+									"type": "any"
+								},
+								{
+									"key": "accessTokenUrl",
+									"type": "any"
+								},
+								{
+									"key": "clientId",
+									"type": "any"
+								},
+								{
+									"key": "clientSecret",
+									"type": "any"
+								},
+								{
+									"key": "clientAuth",
+									"type": "any"
+								},
+								{
+									"key": "grantType",
+									"type": "any"
+								},
+								{
+									"key": "scope",
+									"type": "any"
+								},
+								{
+									"key": "username",
+									"type": "any"
+								},
+								{
+									"key": "password",
+									"type": "any"
+								},
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "redirectUri",
+									"type": "any"
+								},
+								{
+									"key": "refreshToken",
+									"type": "any"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "resource",
+									"value": "https://manage.office.com",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{AppId}}",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{AppSecret}}",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "{{code_temporary}}",
+									"type": "text"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "{{redirectUrl}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://login.microsoftonline.com/{{TenantId}}/oauth2/token",
+							"protocol": "https",
+							"host": [
+								"login",
+								"microsoftonline",
+								"com"
+							],
+							"path": [
+								"{{TenantId}}",
+								"oauth2",
+								"token"
+							]
+						},
+						"description": "as described in the section \"Creating Office 365 Management API Webhook\" in this article: https://flow.microsoft.com/en-us/blog/automate-flow-governance/"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Webhook",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IkhCeGw5bUFlNmd4YXZDa2NvT1UyVEhzRE5hMCIsImtpZCI6IkhCeGw5bUFlNmd4YXZDa2NvT1UyVEhzRE5hMCJ9.eyJhdWQiOiJodHRwczovL21hbmFnZS5vZmZpY2UuY29tIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvZDY4MjA3OTAtMmY3OS00MjU3LTk2NDUtODg3NDY0ZTc3NmZhLyIsImlhdCI6MTU1ODk5MzIyNCwibmJmIjoxNTU4OTkzMjI0LCJleHAiOjE1NTg5OTcxMjQsImFpbyI6IjQyWmdZSkIyVmxTWTdPenZkb0hEeU9ydVNlVjhBQT09IiwiYXBwaWQiOiI4YjlhY2ExYS01NzVlLTQyN2QtOGNhYS03MzY5NjM4NTFlMTkiLCJhcHBpZGFjciI6IjEiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9kNjgyMDc5MC0yZjc5LTQyNTctOTY0NS04ODc0NjRlNzc2ZmEvIiwib2lkIjoiNzEyYjkwOWYtOGNmYS00ZTk1LWExNzAtNmI1MTZkYzE3MWZhIiwicm9sZXMiOlsiU2VydmljZUhlYWx0aC5SZWFkIiwiQWN0aXZpdHlGZWVkLlJlYWQiXSwic3ViIjoiNzEyYjkwOWYtOGNmYS00ZTk1LWExNzAtNmI1MTZkYzE3MWZhIiwidGlkIjoiZDY4MjA3OTAtMmY3OS00MjU3LTk2NDUtODg3NDY0ZTc3NmZhIiwidXRpIjoiVzI3N25oa0d5a0dOUGl5bkUtTmhBQSIsInZlciI6IjEuMCJ9.Efv8jPvqoavQbILs03m9kVxCqcfE3lKlYRx5CG7x6ikxcLXy8rEFr6-t3hJejDOWXZ5dfePcTCyMx1zfRxQxhRZ4NEjKMQYXPXM-5UPmT1xDPdJEdJGGpDCBKnA6ZkUytKndJKQgJAJZRTyo7qfXLwps1MGWIrLI6ImHtv3_qX-ulsSt2y-2YBsfQQu7JnpjyQXj1s60Ej-p7DhO78HApCAukKc5-AhziuOS3PbgX2nN0pgNfbQBGamzqguh7y6iwsIOxwMBXKsbWXoZZBtIoU0NGQv3l9wkX4rnmYqkxe5kIcUNwjXOBYP_21deBAQkNRTCzADZhHxUqNOL-YJcFQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"webhook\" : {\r\n  \"address\": \"{{flowurl}}\",\r\n  \"authId\": \"{{activityfeedauthid}}\",\r\n  \"expiration\": \"\"\r\n }\r\n}"
+						},
+						"url": {
+							"raw": "https://manage.office.com/api/v1.0/{{{TenantId}}}/activity/feed/subscriptions/start?contentType=Audit.General",
+							"protocol": "https",
+							"host": [
+								"manage",
+								"office",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1.0",
+								"{{{TenantId}}}",
+								"activity",
+								"feed",
+								"subscriptions",
+								"start"
+							],
+							"query": [
+								{
+									"key": "contentType",
+									"value": "Audit.General"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Example of Activity Event",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IkhCeGw5bUFlNmd4YXZDa2NvT1UyVEhzRE5hMCIsImtpZCI6IkhCeGw5bUFlNmd4YXZDa2NvT1UyVEhzRE5hMCJ9.eyJhdWQiOiJodHRwczovL21hbmFnZS5vZmZpY2UuY29tIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvZDY4MjA3OTAtMmY3OS00MjU3LTk2NDUtODg3NDY0ZTc3NmZhLyIsImlhdCI6MTU1ODk5OTcxMywibmJmIjoxNTU4OTk5NzEzLCJleHAiOjE1NTkwMDM2MTMsImFpbyI6IjQyWmdZQWhhNFhlMXZhWjQ4N3FIcWpMNS8vZXZCd0E9IiwiYXBwaWQiOiI4YjlhY2ExYS01NzVlLTQyN2QtOGNhYS03MzY5NjM4NTFlMTkiLCJhcHBpZGFjciI6IjEiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9kNjgyMDc5MC0yZjc5LTQyNTctOTY0NS04ODc0NjRlNzc2ZmEvIiwib2lkIjoiNzEyYjkwOWYtOGNmYS00ZTk1LWExNzAtNmI1MTZkYzE3MWZhIiwicm9sZXMiOlsiU2VydmljZUhlYWx0aC5SZWFkIiwiQWN0aXZpdHlGZWVkLlJlYWQiXSwic3ViIjoiNzEyYjkwOWYtOGNmYS00ZTk1LWExNzAtNmI1MTZkYzE3MWZhIiwidGlkIjoiZDY4MjA3OTAtMmY3OS00MjU3LTk2NDUtODg3NDY0ZTc3NmZhIiwidXRpIjoiT05McTBUbXBkazZFMFY0V204aGtBQSIsInZlciI6IjEuMCJ9.vhPyHBHAR_FO7wRdmsQfUPNmgb_0qLJZ9H1CNkMm2LHh5DNaj8Fr7KVEgwH5Sx0WH24UtvBX5AhFFsWVeeqeZp1aeKz1Kk9WlyOqsmWvX89d-841OsaPHc6akGzb5jrMcLx94yeybLwe9jIjZiEB2AZiYAEyqpRyDyEr3WeBJsN2UOxtyDDa9t102weO-qYMHjrECGDlkiRE5SuVHtkxNL9MS4nZFFgzl1G0xq-622SlStirFJHWEt8qkoHr5N2lLhWC_Y957bqlMIBCLTOhFDCBAhnZnl1JbnCBzEFYaHaHHgbScC7EdZ6M8lHV6-yr_B1evrxuNER_JuR6wfQJ6w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://manage.office.com/api/v1.0/d6820790-2f79-4257-9645-887464e776fa/activity/feed/audit/20190527224242124208995$20190527225233518160650$audit_general$Audit_General$na0049$na0049",
+							"protocol": "https",
+							"host": [
+								"manage",
+								"office",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1.0",
+								"d6820790-2f79-4257-9645-887464e776fa",
+								"activity",
+								"feed",
+								"audit",
+								"20190527224242124208995$20190527225233518160650$audit_general$Audit_General$na0049$na0049"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Graph API",
+			"item": [
+				{
+					"name": "Graph API Auth",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"type": "any"
+								},
+								{
+									"key": "callBackUrl",
+									"type": "any"
+								},
+								{
+									"key": "authUrl",
+									"type": "any"
+								},
+								{
+									"key": "accessTokenUrl",
+									"type": "any"
+								},
+								{
+									"key": "clientId",
+									"type": "any"
+								},
+								{
+									"key": "clientSecret",
+									"type": "any"
+								},
+								{
+									"key": "clientAuth",
+									"type": "any"
+								},
+								{
+									"key": "grantType",
+									"type": "any"
+								},
+								{
+									"key": "scope",
+									"type": "any"
+								},
+								{
+									"key": "username",
+									"type": "any"
+								},
+								{
+									"key": "password",
+									"type": "any"
+								},
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "redirectUri",
+									"type": "any"
+								},
+								{
+									"key": "refreshToken",
+									"type": "any"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "'Content-Type'",
+								"value": "'application/x-www-form-urlencoded'"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{AppId}}",
+									"type": "text"
+								},
+								{
+									"key": "resource",
+									"value": "https://graph.microsoft.com",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{AppSecret}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://login.microsoftonline.com/{{TenantId}}/oauth2/token",
+							"protocol": "https",
+							"host": [
+								"login",
+								"microsoftonline",
+								"com"
+							],
+							"path": [
+								"{{TenantId}}",
+								"oauth2",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get GroupV1 from Graph API",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJub25jZSI6IkFRQUJBQUFBQUFEQ29NcGpKWHJ4VHE5Vkc5dGUtN0ZYZlFqSlc1NEdvYVVPYVRlNmJjZEZuMzBSTkxuUlRFNUFJUU16MDlha0JSOGFMb2IwT3B2enk5bmZveENrTjA0aTA2V0xWNjZHNTItS1gwQUg3ODlCWHlBQSIsImFsZyI6IlJTMjU2IiwieDV0IjoiSEJ4bDltQWU2Z3hhdkNrY29PVTJUSHNETmEwIiwia2lkIjoiSEJ4bDltQWU2Z3hhdkNrY29PVTJUSHNETmEwIn0.eyJhdWQiOiJodHRwczovL2dyYXBoLm1pY3Jvc29mdC5jb20iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9kNjgyMDc5MC0yZjc5LTQyNTctOTY0NS04ODc0NjRlNzc2ZmEvIiwiaWF0IjoxNTU5MDk4NDQwLCJuYmYiOjE1NTkwOTg0NDAsImV4cCI6MTU1OTEwMjM0MCwiYWlvIjoiNDJaZ1lQajhVdnBwWGMySEU1WGZwbnZxSG43akFnQT0iLCJhcHBfZGlzcGxheW5hbWUiOiJhbmdyeWdvdmVybmFuY2UiLCJhcHBpZCI6IjhiOWFjYTFhLTU3NWUtNDI3ZC04Y2FhLTczNjk2Mzg1MWUxOSIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2Q2ODIwNzkwLTJmNzktNDI1Ny05NjQ1LTg4NzQ2NGU3NzZmYS8iLCJvaWQiOiI3MTJiOTA5Zi04Y2ZhLTRlOTUtYTE3MC02YjUxNmRjMTcxZmEiLCJyb2xlcyI6WyJEaXJlY3RvcnkuUmVhZFdyaXRlLkFsbCIsIkdyb3VwLlJlYWRXcml0ZS5BbGwiXSwic3ViIjoiNzEyYjkwOWYtOGNmYS00ZTk1LWExNzAtNmI1MTZkYzE3MWZhIiwidGlkIjoiZDY4MjA3OTAtMmY3OS00MjU3LTk2NDUtODg3NDY0ZTc3NmZhIiwidXRpIjoiZ0JyM21JM1NyRUtFVC1JMHNYcU9BQSIsInZlciI6IjEuMCIsInhtc190Y2R0IjoxNTUwODA2NDk5fQ.Tz4Oruoj_m5LCMbPkC5p_eUR7LS2wbS-Pd7vSYwjM0i1jXOMDu8VSp82TCeTYLqdKwnPdRWf-MgrIjDDD-b6SJv9k_ZQXlRFwJc99PryWTlC_zDah5FCkugbi5Xcmar41UFsGmPIICh6DRHdPmc7h9FZaObCg-55zJkR60nwIXd3esW8JXrwSe2K6GJWWhfEy8sA6JCxxT1QSQ0m-IobIVQAJBv9VePuFkZhpExn8iC_PvYGz35YNdqpwyyg0p8Pg8dAFizqGjM7yaFaUQxz_iVnuchCEBFlRSNfvqH8N_IMoS0iBV3VMBbdVFz2ME5LdJuwyCLq9CBPOV6VQtvrSA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://graph.microsoft.com/v1.0/groups/{{groupidV1}}",
+							"protocol": "https",
+							"host": [
+								"graph",
+								"microsoft",
+								"com"
+							],
+							"path": [
+								"v1.0",
+								"groups",
+								"{{groupidV1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get GroupV2 from Graph API",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJub25jZSI6IkFRQUJBQUFBQUFEQ29NcGpKWHJ4VHE5Vkc5dGUtN0ZYMUtadGh3TVR4X3lFcHNvRVRxLWVIS25tcFdYOS1TX2I0TnVlNExmQmVxZmtfc3FkQWpMbXRuRDh2NHRBWnM1Vkc5aEtrVE5xa0hyNnpqU0NvQ18xaFNBQSIsImFsZyI6IlJTMjU2IiwieDV0IjoiSEJ4bDltQWU2Z3hhdkNrY29PVTJUSHNETmEwIiwia2lkIjoiSEJ4bDltQWU2Z3hhdkNrY29PVTJUSHNETmEwIn0.eyJhdWQiOiJodHRwczovL2dyYXBoLm1pY3Jvc29mdC5jb20iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9kNjgyMDc5MC0yZjc5LTQyNTctOTY0NS04ODc0NjRlNzc2ZmEvIiwiaWF0IjoxNTU5MjY2OTg4LCJuYmYiOjE1NTkyNjY5ODgsImV4cCI6MTU1OTI3MDg4OCwiYWlvIjoiNDJaZ1lEQ1R1Qy80SitUb2piaDltODVWSC83d0dBQT0iLCJhcHBfZGlzcGxheW5hbWUiOiJhbmdyeWdvdmVybmFuY2UiLCJhcHBpZCI6IjhiOWFjYTFhLTU3NWUtNDI3ZC04Y2FhLTczNjk2Mzg1MWUxOSIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2Q2ODIwNzkwLTJmNzktNDI1Ny05NjQ1LTg4NzQ2NGU3NzZmYS8iLCJvaWQiOiI3MTJiOTA5Zi04Y2ZhLTRlOTUtYTE3MC02YjUxNmRjMTcxZmEiLCJyb2xlcyI6WyJEaXJlY3RvcnkuUmVhZFdyaXRlLkFsbCIsIkdyb3VwLlJlYWRXcml0ZS5BbGwiXSwic3ViIjoiNzEyYjkwOWYtOGNmYS00ZTk1LWExNzAtNmI1MTZkYzE3MWZhIiwidGlkIjoiZDY4MjA3OTAtMmY3OS00MjU3LTk2NDUtODg3NDY0ZTc3NmZhIiwidXRpIjoidTd2R1h6bjk0a0NCVlhER1B5NEhBQSIsInZlciI6IjEuMCIsInhtc190Y2R0IjoxNTUwODA2NDk5fQ.iIU2zoYYNEDEvvJHd9taf3VkG2TTQVI9pL8yUatQ1srLvvaaqAPrQXOrD6YpV1IC7AQubd8nHscSUvwayjXxQKWEmGdeYic8nmQ8jzxZAbCnA0nqcYv2B2mHy642DIwiL53NESI91k7EV0qZQNmEYOTqhplE-Ku85Kzo4smcqIMgvOw28E4zQp-XZ4RJHvEUuwj5D_NrQHvTpGmlPusyUKfsUsGRLdvgG1LxK5Hbnkd3eEcJIQsL1--JTfKzHzgDK_jEh4vJh5_69gEHkWNDvNrKpRvsZ1gDgf6iazv2WQDYaGm2lxg-MsS7jUwqZZd4z4QVgPDeYz00jY8drSDC3A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://graph.microsoft.com/v1.0/groups/{{groupidV2}}",
+							"protocol": "https",
+							"host": [
+								"graph",
+								"microsoft",
+								"com"
+							],
+							"path": [
+								"v1.0",
+								"groups",
+								"{{groupidV2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add member to group",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJub25jZSI6IkFRQUJBQUFBQUFEQ29NcGpKWHJ4VHE5Vkc5dGUtN0ZYaEVMVHBFRGdCSi02QlU1YUpSLXRhUTZ5Q1ZUSzZNVVFCckk1dEV6elRwc3hMTldtaGFaNUZTZE5MSnExWENrYldBYU9BSnNRcy1lWXBiM1VtY0dNZVNBQSIsImFsZyI6IlJTMjU2IiwieDV0IjoiSEJ4bDltQWU2Z3hhdkNrY29PVTJUSHNETmEwIiwia2lkIjoiSEJ4bDltQWU2Z3hhdkNrY29PVTJUSHNETmEwIn0.eyJhdWQiOiJodHRwczovL2dyYXBoLm1pY3Jvc29mdC5jb20iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9kNjgyMDc5MC0yZjc5LTQyNTctOTY0NS04ODc0NjRlNzc2ZmEvIiwiaWF0IjoxNTU5MTc2NjA1LCJuYmYiOjE1NTkxNzY2MDUsImV4cCI6MTU1OTE4MDUwNSwiYWlvIjoiNDJaZ1lQamhHYStXM0J2M2NjYU9zd2ZsZkQ2SEFBQT0iLCJhcHBfZGlzcGxheW5hbWUiOiJhbmdyeWdvdmVybmFuY2UiLCJhcHBpZCI6IjhiOWFjYTFhLTU3NWUtNDI3ZC04Y2FhLTczNjk2Mzg1MWUxOSIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2Q2ODIwNzkwLTJmNzktNDI1Ny05NjQ1LTg4NzQ2NGU3NzZmYS8iLCJvaWQiOiI3MTJiOTA5Zi04Y2ZhLTRlOTUtYTE3MC02YjUxNmRjMTcxZmEiLCJyb2xlcyI6WyJEaXJlY3RvcnkuUmVhZFdyaXRlLkFsbCIsIkdyb3VwLlJlYWRXcml0ZS5BbGwiXSwic3ViIjoiNzEyYjkwOWYtOGNmYS00ZTk1LWExNzAtNmI1MTZkYzE3MWZhIiwidGlkIjoiZDY4MjA3OTAtMmY3OS00MjU3LTk2NDUtODg3NDY0ZTc3NmZhIiwidXRpIjoiZDVFMHp6dExxMEtCMWRpSGl6bXpBQSIsInZlciI6IjEuMCIsInhtc190Y2R0IjoxNTUwODA2NDk5fQ.AiKkMJNTydiIsrjpQix8nYC5_s3stx1gkgbeKqnRfhe6ygUcYeviU5HcV5iJbwdQH4t9hIfNPd3upWp1FeTBVG5YV_uHblIdJlOakqDLdM0yHCP6xRgjxZ38WnmSWRWdAonvEA_WTci4QNl-QkkKMsLdMrR_44ZzNs6Ckh52MJuUk_Ti0FWeBCx4X3XRnbyJ6c4JlSZGBzilLdbPTIfT05qDk6daCobQ538ocoaAs4Way7WOCyPRXnsB8Qblubmd3Td-vG3SzCDbBAR7i3bKgv1oy_Xlq2kCRk6_bwofndTl11LTMA2ny_1MRcjjPkzVuhFHrm6OtDRBjxhVzgWVWg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"@odata.id\": \"https://graph.microsoft.com/v1.0/directoryObjects/{{graph_memberid}}\"\r\n}"
+						},
+						"url": {
+							"raw": "https://graph.microsoft.com/v1.0/groups/{{groupidV1}}/owners/$ref",
+							"protocol": "https",
+							"host": [
+								"graph",
+								"microsoft",
+								"com"
+							],
+							"path": [
+								"v1.0",
+								"groups",
+								"{{groupidV1}}",
+								"owners",
+								"$ref"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Power BI API",
+			"item": [
+				{
+					"name": "Power BI Auth",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"type": "any"
+								},
+								{
+									"key": "callBackUrl",
+									"type": "any"
+								},
+								{
+									"key": "authUrl",
+									"type": "any"
+								},
+								{
+									"key": "accessTokenUrl",
+									"type": "any"
+								},
+								{
+									"key": "clientId",
+									"type": "any"
+								},
+								{
+									"key": "clientSecret",
+									"type": "any"
+								},
+								{
+									"key": "clientAuth",
+									"type": "any"
+								},
+								{
+									"key": "grantType",
+									"type": "any"
+								},
+								{
+									"key": "scope",
+									"type": "any"
+								},
+								{
+									"key": "username",
+									"type": "any"
+								},
+								{
+									"key": "password",
+									"type": "any"
+								},
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "redirectUri",
+									"type": "any"
+								},
+								{
+									"key": "refreshToken",
+									"type": "any"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{AppId}}",
+									"type": "text"
+								},
+								{
+									"key": "resource",
+									"value": "https://analysis.windows.net/powerbi/api",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{AppSecret}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://login.microsoftonline.com/common/oauth2/token",
+							"protocol": "https",
+							"host": [
+								"login",
+								"microsoftonline",
+								"com"
+							],
+							"path": [
+								"common",
+								"oauth2",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Dataset",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IkhCeGw5bUFlNmd4YXZDa2NvT1UyVEhzRE5hMCIsImtpZCI6IkhCeGw5bUFlNmd4YXZDa2NvT1UyVEhzRE5hMCJ9.eyJhdWQiOiJodHRwczovL2FuYWx5c2lzLndpbmRvd3MubmV0L3Bvd2VyYmkvYXBpIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvZDY4MjA3OTAtMmY3OS00MjU3LTk2NDUtODg3NDY0ZTc3NmZhLyIsImlhdCI6MTU1OTI1OTg2NSwibmJmIjoxNTU5MjU5ODY1LCJleHAiOjE1NTkyNjM3NjUsImFjY3QiOjAsImFjciI6IjEiLCJhaW8iOiI0MlpnWUpBeXlPUFhEVmhrM2JUejVXN2hheGVLT3psbmZQbTN5VExvL0YrckQybk40Z3dBIiwiYW1yIjpbInB3ZCJdLCJhcHBpZCI6IjhiOWFjYTFhLTU3NWUtNDI3ZC04Y2FhLTczNjk2Mzg1MWUxOSIsImFwcGlkYWNyIjoiMSIsImZhbWlseV9uYW1lIjoiQWRtaW5pc3RyYXRvciIsImdpdmVuX25hbWUiOiJNT0QiLCJpcGFkZHIiOiIxMDcuMjE3LjEwNC4xMjYiLCJuYW1lIjoiTU9EIEFkbWluaXN0cmF0b3IiLCJvaWQiOiI5NmZkODk3YS1hM2M0LTQ0OTAtOTZmNy05MDNkYWMyMjA5YTYiLCJwdWlkIjoiMTAwMzIwMDAzRDNEMUMzQiIsInNjcCI6IkRhdGFzZXQuUmVhZC5BbGwgRGF0YXNldC5SZWFkV3JpdGUuQWxsIiwic3ViIjoiTDZDek56R2d6MVk4bE1mTVlYOU91WmhPaGFUbWhHazNEZ1l5RjluNFFIMCIsInRpZCI6ImQ2ODIwNzkwLTJmNzktNDI1Ny05NjQ1LTg4NzQ2NGU3NzZmYSIsInVuaXF1ZV9uYW1lIjoiYWRtaW5ATTM2NXgxMTA4MzQub25taWNyb3NvZnQuY29tIiwidXBuIjoiYWRtaW5ATTM2NXgxMTA4MzQub25taWNyb3NvZnQuY29tIiwidXRpIjoicEFqSjZOdEJua1dPSjZWblFuMEVBQSIsInZlciI6IjEuMCIsIndpZHMiOlsiNjJlOTAzOTQtNjlmNS00MjM3LTkxOTAtMDEyMTc3MTQ1ZTEwIl19.HjMwWRfG_W4Sj4t1uiai05FVH9U3P1wSMJAH_mrR-1g64ovb_SKpdbjlZyF1qCfLxwJqNU_XfVWbalj_TMPPvyiXn19xwvkIlvanZhUkdGYbAJM52QA-TtxXhdsjBcX7G_h4hKoRRWSucNKmv7N4nwxt_hPTPZ5JIKYCBSYWAzRvTOPYLTYF54ABs8ckBN_qmXfFwJbLp_3Xc7NrnZu3IdxOuuPOmzzfBvLAE9cFz3KVQd85IjD3bS44b_6KEWRVRwBhzv9KJP1uH1_TnsxWoF1RtOe4fFWVjHlEmIrl0_rVVJc3vfV91OCJY4eqyegJeE96d4MHkWaPb3WEdq0lIA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://api.powerbi.com/v1.0/myorg/groups/{{groupidV1}}/datasets/{{dataset}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"powerbi",
+								"com"
+							],
+							"path": [
+								"v1.0",
+								"myorg",
+								"groups",
+								"{{groupidV1}}",
+								"datasets",
+								"{{dataset}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
